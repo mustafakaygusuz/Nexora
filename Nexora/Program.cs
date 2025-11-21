@@ -11,6 +11,7 @@ using Nexora.Core.StartupExtensions;
 using Nexora.Data.ConsumersRepositories;
 using Nexora.Data.Domain.DbContexts;
 using Nexora.Data.SystemConfigurationManagers;
+using Nexora.Security.JWT;
 using Nexora.Services.Common.Middlewares;
 using Nexora.Services.ConsumersServices;
 using System.ComponentModel;
@@ -107,6 +108,18 @@ void SetupDI()
           .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Manager")))
           .AsImplementedInterfaces()
           .WithScopedLifetime());
+
+    builder.Services.AddScoped<ITokenHelper>(sp =>
+    {
+        var config = sp.GetRequiredService<IConfiguration>().GetSection("Jwt");
+        var secret = config.GetValue<string>("SecretKey") ?? throw new InvalidOperationException("Jwt:SecretKey not configured");
+        var issuer = config.GetValue<string>("Issuer") ?? "nexora";
+        var audience = config.GetValue<string>("Audience") ?? "nexora";
+        var accessMinutes = config.GetValue<int?>("AccessTokenMinutes") ?? 60;
+        var refreshDays = config.GetValue<int?>("RefreshTokenDays") ?? 1;
+
+        return new JwtTokenHelper(secret, issuer, audience, accessMinutes, refreshDays);
+    });
 
     //MappingConfig.Configure();
 }
