@@ -6,7 +6,7 @@ namespace Nexora.Services.AuthServices.Dtos.Request
     public class AuthRegisterRequest
     {
         [Required]
-        public required string Username { get; set; }
+        public required string Nickname { get; set; }
         [Required]
         public required string Email { get; set; }
         [Required]

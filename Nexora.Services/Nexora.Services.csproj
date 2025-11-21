@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Nexora.Core\Nexora.Core.csproj" />
     <ProjectReference Include="..\Nexora.Data\Nexora.Data.csproj" />
+    <ProjectReference Include="..\Security\Nexora.Security.csproj" />
   </ItemGroup>
 
 </Project>

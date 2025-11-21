@@ -32,7 +32,6 @@ namespace Nexora.Security.JWT
         public TokenResponse CreateToken(Consumer consumer)
         {
             var accessTokenExpiration = DateTime.UtcNow.AddMinutes(_accessTokenExpirationMinutes);
-            var refreshTokenExpiration = DateTime.UtcNow.AddDays(_refreshTokenExpirationDays);
 
             var claims = new List<Claim>
             {
@@ -69,8 +68,8 @@ namespace Nexora.Security.JWT
             {
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
-                AccessTokenExpiration = accessTokenExpiration,
-                RefreshTokenExpiration = refreshTokenExpiration
+                ExpireSeconds = _accessTokenExpirationMinutes * 60,
+                RefreshExpireSeconds = _refreshTokenExpirationDays * 24 * 60 * 60
             };
         }
 

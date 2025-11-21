@@ -12,58 +12,58 @@ namespace Nexora.Api.Controllers
     [ApiController]
     public class ConsumersController(IConsumersService _consumersService) : ControllerBase
     {
-        [HttpGet("profile")]
-        [ProducesResponseType(200, Type = typeof(ConsumersGetProfileResult))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> Get()
-        {
-            return Ok(await _consumersService.GetProfile());
-        }
+        //[HttpGet("profile")]
+        ////[ProducesResponseType(200, Type = typeof(ConsumersGetProfileResult))]
+        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        //public async Task<IActionResult> Get()
+        //{
+        //    return Ok(await _consumersService.GetProfile());
+        //}
 
-        [HttpPost("profile")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> Post(ConsumersUpdateProfileRequest request)
-        {
-            await _consumersService.UpdateProfile(request);
+        //[HttpPost("profile")]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(400, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        //public async Task<IActionResult> Post(ConsumersUpdateProfileRequest request)
+        //{
+        //    await _consumersService.UpdateProfile(request);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        [HttpGet("consents")]
-        [ProducesResponseType(200, Type = typeof(List<ConsumersListConsentsResult>))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> GetConsents()
-        {
-            return Ok(await _consumersService.GetConsents());
-        }
+        //[HttpGet("consents")]
+        //[ProducesResponseType(200, Type = typeof(List<ConsumersListConsentsResult>))]
+        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        //public async Task<IActionResult> GetConsents()
+        //{
+        //    return Ok(await _consumersService.GetConsents());
+        //}
 
-        [HttpPost("consents")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> UpdateConsents(List<ConsumersUpdateConsentsRequest> request)
-        {
-            await _consumersService.UpdateConsents(request);
+        //[HttpPost("consents")]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(400, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        //public async Task<IActionResult> UpdateConsents(List<ConsumersUpdateConsentsRequest> request)
+        //{
+        //    await _consumersService.UpdateConsents(request);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        [HttpDelete]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> Delete(ConsumersDeleteAccountRequest request)
-        {
-            await _consumersService.DeleteAccount(request);
+        //[HttpDelete]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(400, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        //public async Task<IActionResult> Delete(ConsumersDeleteAccountRequest request)
+        //{
+        //    await _consumersService.DeleteAccount(request);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }
