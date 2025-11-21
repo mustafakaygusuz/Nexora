@@ -1,9 +1,12 @@
-﻿using Nexora.Data.ConsumersRepositories;
+﻿using Nexora.Core.Common.Enumerations;
+using Nexora.Core.Common.Exceptions;
+using Nexora.Data.ConsumersRepositories;
 using Nexora.Data.Domain.Entities;
 using Nexora.Security.Hashing;
 using Nexora.Security.JWT;
 using Nexora.Services.AuthServices.Dtos.Request;
 using Nexora.Services.AuthServices.Dtos.Response;
+using System.Net;
 
 namespace Nexora.Services.AuthServices
 {
@@ -13,7 +16,7 @@ namespace Nexora.Services.AuthServices
         {
             var exists = await _consumersRepository.GetByEmailAsync(request.Email);
             if (exists != null)
-                throw new Exception("Email already exists.");
+                throw new HttpStatusCodeException(HttpStatusCode.Conflict, StaticTextKeyType.AuthExEmlAlrdyExst);
 
             HashingHelper.CreatePasswordHash(request.Password, out byte[] hash, out byte[] salt);
 
@@ -35,13 +38,13 @@ namespace Nexora.Services.AuthServices
             consumer.RefreshToken = tokenResponse.RefreshToken;
 
             consumer.Id = await _consumersRepository.InsertAsync(consumer);
-            var response = new  AuthRegisterResponse
+            var response = new AuthRegisterResponse
             {
                 ExpireSeconds = tokenResponse.ExpireSeconds,
                 RefreshExpireSeconds = tokenResponse.RefreshExpireSeconds,
                 AccessToken = tokenResponse.AccessToken,
                 RefreshToken = tokenResponse.RefreshToken
-            };  
+            };
             return response;
         }
 
@@ -50,7 +53,7 @@ namespace Nexora.Services.AuthServices
             throw new NotImplementedException();
         }
 
-        public async Task<RefreshTokenResponse> RefreshToken(RefreshTokenRequest request)
+        public async Task<AuthRefreshTokenResponse> RefreshToken(RefreshTokenRequest request)
         {
             throw new NotImplementedException();
         }

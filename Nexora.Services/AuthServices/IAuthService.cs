@@ -7,6 +7,6 @@ namespace Nexora.Services.AuthServices
     {
         Task<AuthRegisterResponse> Register(AuthRegisterRequest request);
         Task<AuthLoginResponse> Login(AuthLoginRequest request);
-        Task<RefreshTokenResponse> RefreshToken(RefreshTokenRequest request);
+        Task<AuthRefreshTokenResponse> RefreshToken(RefreshTokenRequest request);
     }
 }

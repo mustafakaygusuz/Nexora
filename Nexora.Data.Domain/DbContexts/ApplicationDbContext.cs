@@ -10,6 +10,7 @@ namespace Nexora.Data.Domain.DbContexts
     {
         public virtual DbSet<Consumer> Consumers { get; set; }
         public virtual DbSet<SystemConfiguration> SystemConfigurations { get; set; }
+        //public virtual DbSet<StaticText> StaticTexts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

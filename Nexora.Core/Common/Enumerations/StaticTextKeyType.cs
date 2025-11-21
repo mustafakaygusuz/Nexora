@@ -2,11 +2,14 @@
 {
     public enum StaticTextKeyType
     {
+        IntrnlSrvrErr,
+        IntrnlSrvrErrTtl,
         DbExInsrt,
         DbExUpdt,
         DbExDlt,
         MlHshExTknExprd,
         MlHshExWrngHsh,
         MdlVldtnExNtVld,
+        AuthExEmlAlrdyExst,
     }
 }
