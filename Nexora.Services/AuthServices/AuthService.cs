@@ -30,7 +30,8 @@ namespace Nexora.Services.AuthServices
                 PasswordSalt = salt,
                 CreatedDate = DateTime.UtcNow,
                 Name = request.Name,
-                Surname = request.Surname
+                Surname = request.Surname,
+                Status = StatusType.Active
             };
             var tokenResponse = _tokenHelper.CreateToken(consumer);
 

@@ -17,6 +17,7 @@ using Nexora.Services.ConsumersServices;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration

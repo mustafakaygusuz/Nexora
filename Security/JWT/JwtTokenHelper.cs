@@ -45,7 +45,7 @@ namespace Nexora.Security.JWT
                 claims.Add(new Claim(ClaimTypes.DateOfBirth, consumer.BirthDate.Value.ToString("yyyy-MM-dd")));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
             var token = new JwtSecurityToken(
                 issuer: _issuer,
