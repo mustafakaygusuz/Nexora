@@ -10,9 +10,4 @@
     <ProjectReference Include="..\Nexora.Core\Nexora.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AuthServices\Dtos\Response\" />
-    <Folder Include="AuthServices\Dtos\Request\" />
-  </ItemGroup>
-
 </Project>

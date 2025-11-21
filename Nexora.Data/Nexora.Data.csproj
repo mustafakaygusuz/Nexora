@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nexora.Core\Nexora.Core.csproj" />
+    <Folder Include="ConsumersRepositories\Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AuthServices\Dtos\Response\" />
-    <Folder Include="AuthServices\Dtos\Request\" />
+    <ProjectReference Include="..\Nexora.Data.Domain\Nexora.Data.Domain.csproj" />
   </ItemGroup>
 
 </Project>

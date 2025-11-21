@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36401.2 d17.14
+VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexora.Api", "Nexora\Nexora.Api.csproj", "{20DF9E29-4E57-45E4-8527-48014A677BC7}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexora.Services", "Nexora.Services\Nexora.Services.csproj", "{CF34683A-FFC0-45C1-B454-C7D6E2020991}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexora.Core", "Nexora.Core\Nexora.Core.csproj", "{1A55BB8D-1FD1-4E24-B582-B4F7D9B80732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexora.Data.Domain", "Nexora.Data.Domain\Nexora.Data.Domain.csproj", "{67510FD8-F5C1-4B3F-95C7-D18B309ED00E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexora.Data", "Nexora.Data\Nexora.Data.csproj", "{BAA64ABE-8178-429E-8C6D-B564660643AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,14 @@ Global
 		{1A55BB8D-1FD1-4E24-B582-B4F7D9B80732}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A55BB8D-1FD1-4E24-B582-B4F7D9B80732}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A55BB8D-1FD1-4E24-B582-B4F7D9B80732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67510FD8-F5C1-4B3F-95C7-D18B309ED00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67510FD8-F5C1-4B3F-95C7-D18B309ED00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67510FD8-F5C1-4B3F-95C7-D18B309ED00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67510FD8-F5C1-4B3F-95C7-D18B309ED00E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA64ABE-8178-429E-8C6D-B564660643AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA64ABE-8178-429E-8C6D-B564660643AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA64ABE-8178-429E-8C6D-B564660643AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA64ABE-8178-429E-8C6D-B564660643AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +61,8 @@ Global
 		{150BCE21-2243-4B42-BC7D-3792B4C413EC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{CF34683A-FFC0-45C1-B454-C7D6E2020991} = {150BCE21-2243-4B42-BC7D-3792B4C413EC}
 		{1A55BB8D-1FD1-4E24-B582-B4F7D9B80732} = {CD94941F-CA15-4C6A-98D4-C2658761FE66}
+		{67510FD8-F5C1-4B3F-95C7-D18B309ED00E} = {C127CA71-F265-4C46-8738-CBCC8AE0939F}
+		{BAA64ABE-8178-429E-8C6D-B564660643AD} = {C127CA71-F265-4C46-8738-CBCC8AE0939F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85E7A21A-F15F-4569-8A94-EBFC8BE3B8F2}
