@@ -13,5 +13,16 @@
         AuthExEmlAlrdyExst,
         AuthExUsrNtFnd,
         AuthExInvldPsswrd,
+
+        // Validation Keys
+        AuthExInvalidEmail,
+        AuthExPwdReqUpper,
+        AuthExPwdReqLower,
+        AuthExPwdReqDigit,
+        AuthExPwdReqSpecial,
+        AuthExInvalidNickname,
+        AuthExInvalidName,
+        AuthExInvalidSurname,
+        AuthExInvalidBirthDate,
     }
 }

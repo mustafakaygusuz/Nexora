@@ -26,6 +26,17 @@ namespace Nexora.Core.Common.Helpers
             {StaticTextKeyType.AuthExEmlAlrdyExst, "Auth_Exception_EmailAlreadyExist"},
             {StaticTextKeyType.AuthExUsrNtFnd, "Auth_Exception_UserNotFound"},
             {StaticTextKeyType.AuthExInvldPsswrd, "Auth_Exception_InvalidPassword"},
+
+            // Validation
+            {StaticTextKeyType.AuthExInvalidEmail, "Auth_Validation_InvalidEmail"},
+            {StaticTextKeyType.AuthExPwdReqUpper, "Auth_Validation_PasswordUppercaseRequired"},
+            {StaticTextKeyType.AuthExPwdReqLower, "Auth_Validation_PasswordLowercaseRequired"},
+            {StaticTextKeyType.AuthExPwdReqDigit, "Auth_Validation_PasswordDigitRequired"},
+            {StaticTextKeyType.AuthExPwdReqSpecial, "Auth_Validation_PasswordSpecialRequired"},
+            {StaticTextKeyType.AuthExInvalidNickname, "Auth_Validation_InvalidNickname"},
+            {StaticTextKeyType.AuthExInvalidName, "Auth_Validation_InvalidName"},
+            {StaticTextKeyType.AuthExInvalidSurname, "Auth_Validation_InvalidSurname"},
+            {StaticTextKeyType.AuthExInvalidBirthDate, "Auth_Validation_InvalidBirthDate"},
         };
     }
 }
