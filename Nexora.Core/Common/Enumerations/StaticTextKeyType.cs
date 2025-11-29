@@ -13,6 +13,8 @@
         AuthExEmlAlrdyExst,
         AuthExUsrNtFnd,
         AuthExInvldPsswrd,
+        AuthExInvldRfshTkn,
+        AuthExRfshTknExprd,
 
         // Validation Keys
         AuthExInvalidEmail,

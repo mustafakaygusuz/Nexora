@@ -88,7 +88,29 @@ namespace Nexora.Services.AuthServices
 
         public async Task<AuthRefreshTokenResponse> RefreshToken(RefreshTokenRequest request)
         {
-            throw new NotImplementedException();
+            var consumer = await _consumersRepository.GetByRefreshTokenAsync(request.RefreshToken);
+            if (consumer == null)
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, StaticTextKeyType.AuthExInvldRfshTkn);
+
+            var tokenResponse = _tokenHelper.CreateToken(consumer);
+
+            consumer.AccessToken = tokenResponse.AccessToken;
+            consumer.RefreshToken = tokenResponse.RefreshToken;
+            consumer.UpdatedDate = DateTime.UtcNow;
+
+            _consumersRepository.UpdateTokens(
+                consumer.Id,
+                consumer.AccessToken,
+                consumer.RefreshToken
+            );
+
+            return new AuthRefreshTokenResponse
+            {
+                AccessToken = tokenResponse.AccessToken,
+                RefreshToken = tokenResponse.RefreshToken,
+                ExpireSeconds = tokenResponse.ExpireSeconds,
+                RefreshExpireSeconds = tokenResponse.RefreshExpireSeconds
+            };
         }
     }
 }

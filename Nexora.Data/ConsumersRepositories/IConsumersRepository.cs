@@ -10,5 +10,6 @@ namespace Nexora.Data.ConsumersRepositories
         Task<long> InsertAsync(Consumer consumer);
         Task<int> UpdateAsync(Consumer consumer);
         OrmResultModel<int> UpdateTokens(long id, string accessToken, string refreshToken);
+        Task<Consumer?> GetByRefreshTokenAsync(string refreshToken);
     }
 }
