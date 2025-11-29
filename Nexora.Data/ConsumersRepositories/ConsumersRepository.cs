@@ -49,5 +49,11 @@ namespace Nexora.Data.ConsumersRepositories
 
             return _dapperRepository.Update(query, parameters);
         }
+
+        public async Task<Consumer?> GetByRefreshTokenAsync(string refreshToken)
+        {
+            return await _dbContext.Consumers
+                .FirstOrDefaultAsync(x => x.RefreshToken == refreshToken);
+        }
     }
 }
