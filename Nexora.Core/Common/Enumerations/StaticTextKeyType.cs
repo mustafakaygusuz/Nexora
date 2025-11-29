@@ -11,5 +11,7 @@
         MlHshExWrngHsh,
         MdlVldtnExNtVld,
         AuthExEmlAlrdyExst,
+        AuthExUsrNtFnd,
+        AuthExInvldPsswrd,
     }
 }

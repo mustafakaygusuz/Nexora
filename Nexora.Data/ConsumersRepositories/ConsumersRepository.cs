@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using Nexora.Core.Contexts;
 using Nexora.Core.Data.DapperRepository;
+using Nexora.Core.Data.EfCoreModels;
 using Nexora.Data.Domain.DbContexts;
 using Nexora.Data.Domain.Entities;
 
@@ -29,6 +31,23 @@ namespace Nexora.Data.ConsumersRepositories
         {
             _dbContext.Consumers.Update(consumer);
             return await _dbContext.SaveChangesAsync();
+        }
+
+        public OrmResultModel<int> UpdateTokens(long id, string accessToken, string refreshToken)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", id);
+            parameters.Add("AccessToken", accessToken);
+            parameters.Add("RefreshToken", refreshToken);
+            parameters.Add("UpdatedDate", DateTime.UtcNow);
+
+            string query = @"UPDATE Consumers 
+                     SET AccessToken = @AccessToken,
+                         RefreshToken = @RefreshToken,
+                         UpdatedDate = @UpdatedDate
+                     WHERE Id = @Id";
+
+            return _dapperRepository.Update(query, parameters);
         }
     }
 }

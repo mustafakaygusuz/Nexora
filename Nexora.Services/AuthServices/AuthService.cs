@@ -51,8 +51,40 @@ namespace Nexora.Services.AuthServices
 
         public async Task<AuthLoginResponse> Login(AuthLoginRequest request)
         {
-            throw new NotImplementedException();
+            var consumer = await _consumersRepository.GetByEmailAsync(request.Email);
+            if (consumer == null)
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, StaticTextKeyType.AuthExUsrNtFnd);
+
+            bool checkPassword = HashingHelper.VerifyPasswordHash(
+                request.Password,
+                consumer.PasswordHash,
+                consumer.PasswordSalt
+            );
+
+            if (!checkPassword)
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, StaticTextKeyType.AuthExInvldPsswrd);
+
+            var tokenResponse = _tokenHelper.CreateToken(consumer);
+
+            consumer.AccessToken = tokenResponse.AccessToken;
+            consumer.RefreshToken = tokenResponse.RefreshToken;
+            consumer.UpdatedDate = DateTime.UtcNow;
+
+            _consumersRepository.UpdateTokens(
+                consumer.Id,
+                tokenResponse.AccessToken,
+                tokenResponse.RefreshToken
+            );
+
+            return new AuthLoginResponse
+            {
+                AccessToken = tokenResponse.AccessToken,
+                RefreshToken = tokenResponse.RefreshToken,
+                ExpireSeconds = tokenResponse.ExpireSeconds,
+                RefreshExpireSeconds = tokenResponse.RefreshExpireSeconds
+            };
         }
+
 
         public async Task<AuthRefreshTokenResponse> RefreshToken(RefreshTokenRequest request)
         {

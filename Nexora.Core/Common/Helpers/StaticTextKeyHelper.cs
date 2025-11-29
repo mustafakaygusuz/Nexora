@@ -24,6 +24,8 @@ namespace Nexora.Core.Common.Helpers
             {StaticTextKeyType.MlHshExTknExprd, "MailHash_Exception_TokenExpired"},
             {StaticTextKeyType.MlHshExWrngHsh, "MailHash_Exception_WrongHash"},
             {StaticTextKeyType.AuthExEmlAlrdyExst, "Auth_Exception_EmailAlreadyExist"},
+            {StaticTextKeyType.AuthExUsrNtFnd, "Auth_Exception_UserNotFound"},
+            {StaticTextKeyType.AuthExInvldPsswrd, "Auth_Exception_InvalidPassword"},
         };
     }
 }
