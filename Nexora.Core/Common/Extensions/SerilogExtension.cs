@@ -40,7 +40,6 @@ namespace Nexora.Core.Common.Extensions
             List<SqlColumn> customDataColumn = new List<SqlColumn>();
 
             customDataColumn.Add(new SqlColumn() { ColumnName = "Application", DataType = SqlDbType.NVarChar, AllowNull = false });
-            customDataColumn.Add(new SqlColumn() { ColumnName = "OrganizationId", DataType = SqlDbType.BigInt, AllowNull = true });
             customDataColumn.Add(new SqlColumn() { ColumnName = "ChannelType", DataType = SqlDbType.TinyInt, AllowNull = true });
 
             var columnOptions = new ColumnOptions

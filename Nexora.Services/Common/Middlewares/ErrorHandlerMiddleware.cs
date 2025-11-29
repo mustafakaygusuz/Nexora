@@ -6,6 +6,7 @@ using Nexora.Core.Common.Extensions;
 using Nexora.Core.Common.Helpers;
 using Nexora.Core.Common.Models;
 using Nexora.Core.Contexts;
+using Nexora.Data.Domain.Enumerations;
 using Nexora.Data.StaticTextsManagers;
 using Serilog.Context;
 using System.Net;
@@ -29,18 +30,13 @@ namespace Nexora.Services.Common.Middlewares
                 context.Response.StatusCode = (int)ex.StatusCode;
                 context.Response.ContentType = ex.ContentType;
 
-                //var errorDetail = await GetErrorDetail(_staticTextsManager, ex.Key ?? "", ex.MessageKeyTypes);
-
-                //if (!string.IsNullOrWhiteSpace(ex.Message))
-                //{
-                //    errorDetail.Message = ex.Message;
-                //}
+                var errorDetail = await GetErrorDetail(_staticTextsManager, ex.Key ?? "", ex.MessageKeyTypes, ex.Message);
 
                 await context.Response.WriteAsync(new ErrorResultModel
                 {
                     Key = ex.Key,
-                    Title = ex.Title,
-                    Message = ex.Message
+                    Title = errorDetail.Title,
+                    Message = errorDetail.Message
                 }.ToJson(new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
             }
             catch (Exception ex)
@@ -53,53 +49,54 @@ namespace Nexora.Services.Common.Middlewares
 
                 var errorKey = StaticTextKeyHelper.Get(StaticTextKeyType.IntrnlSrvrErr);
 
-                //var errorDetail = await GetErrorDetail(_staticTextsManager, errorKey ?? "", null);
+                var errorDetail = await GetErrorDetail(_staticTextsManager, errorKey ?? "", null);
 
                 await context.Response.WriteAsync(new ErrorResultModel
                 {
                     Key = errorKey,
-                    Title = ex.Message,
-                    Message = ex.Message
+                    Title = errorDetail.Title,
+                    Message = errorDetail.Message
                 }.ToJson(new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
             }
         }
 
-        //private static async Task<(string Title, string Message)> GetErrorDetail(IStaticTextsManager _staticTextsManager, string key, List<StaticTextKeyType>? keyList = null)
-        //{
-        //    string? title = "", message = "";
+        private static async Task<(string Title, string Message)> GetErrorDetail(IStaticTextsManager _staticTextsManager, string key, List<StaticTextKeyType>? keyList = null, string? overrideMessage = null)
+        {
+            string? title = "", message = "";
 
-        //    var data = await _staticTextsManager.ListByType(StaticTextType.Error);
+            var data = await _staticTextsManager.ListByType(StaticTextType.Error);
 
-        //    if (data.HasValue())
-        //    {
-        //        var errorKey = StaticTextKeyHelper.Get(StaticTextKeyType.IntrnlSrvrErr);
+            if (data.HasValue())
+            {
+                var errorKey = StaticTextKeyHelper.Get(StaticTextKeyType.IntrnlSrvrErr);
 
-        //        if (keyList.HasValue())
-        //        {
-        //            var messages = await _staticTextsManager.ListByKeys(keyList!, StaticTextType.Error);
+                if (keyList.HasValue())
+                {
+                    var messages = await _staticTextsManager.ListByKeys(keyList!, StaticTextType.Error);
 
-        //            title =
-        //                data.FirstOrDefault(x => x.Key == $"{key}_Title")?.Value ??
-        //                data.FirstOrDefault(x => x.Key == $"{errorKey}_Title")?.Value;
+                    title =
+                        data.FirstOrDefault(x => x.Key == $"{key}_Title")?.Value ??
+                        data.FirstOrDefault(x => x.Key == $"{errorKey}_Title")?.Value;
 
-        //            message =
-        //                messages.HasValue() ? string.Join(", ", messages!.Select(x => x.Value)) : null ??
-        //                data.FirstOrDefault(x => x.Key == errorKey)?.Value;
-        //        }
-        //        else
-        //        {
-        //            title =
-        //                data.FirstOrDefault(x => x.Key == $"{key}_Title")?.Value ??
-        //                data.FirstOrDefault(x => x.Key == $"{errorKey}_Title")?.Value;
+                    message =
+                        messages.HasValue() ? string.Join(", ", messages!.Select(x => x.Value)) : null ??
+                        data.FirstOrDefault(x => x.Key == errorKey)?.Value;
+                }
+                else
+                {
+                    title =
+                        data.FirstOrDefault(x => x.Key == $"{key}_Title")?.Value ??
+                        data.FirstOrDefault(x => x.Key == $"{errorKey}_Title")?.Value;
 
-        //            message =
-        //                data.FirstOrDefault(x => x.Key == key)?.Value ??
-        //                data.FirstOrDefault(x => x.Key == errorKey)?.Value;
-        //        }
-        //    }
+                    message =
+                        !string.IsNullOrWhiteSpace(overrideMessage) ? overrideMessage :
+                        data.FirstOrDefault(x => x.Key == key)?.Value ??
+                        data.FirstOrDefault(x => x.Key == errorKey)?.Value;
+                }
+            }
 
-        //    return (title ?? "", message ?? "");
-        //}
+            return (title ?? "", message ?? "");
+        }
 
         private static void PushRequestContextToLog(HttpContext context, ApiContext _apiContext)
         {
