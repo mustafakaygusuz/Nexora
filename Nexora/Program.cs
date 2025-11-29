@@ -8,10 +8,12 @@ using Nexora.Core.Common.Configurations;
 using Nexora.Core.Common.JsonConverters;
 using Nexora.Core.Contexts;
 using Nexora.Core.StartupExtensions;
+using Nexora.Core.Validation.Extensions;
 using Nexora.Data.ConsumersRepositories;
 using Nexora.Data.Domain.DbContexts;
 using Nexora.Data.SystemConfigurationManagers;
 using Nexora.Security.JWT;
+using Nexora.Services.AuthServices.Dtos.Validators;
 using Nexora.Services.Common.Middlewares;
 using Nexora.Services.ConsumersServices;
 using System.ComponentModel;
@@ -121,7 +123,7 @@ void SetupDI()
 
         return new JwtTokenHelper(secret, issuer, audience, accessMinutes, refreshDays);
     });
-
+    builder.Services.AutoAddValidators<AuthRegisterRequestValidator>();
     //MappingConfig.Configure();
 }
 
