@@ -30,7 +30,9 @@ namespace Nexora.Services.Common.Middlewares
                 context.Response.StatusCode = (int)ex.StatusCode;
                 context.Response.ContentType = ex.ContentType;
 
-                var errorDetail = await GetErrorDetail(_staticTextsManager, ex.Key ?? "", ex.MessageKeyTypes, ex.Message);
+                bool isOverrideMessage = !ex.Message.StartsWith("Key");
+
+                var errorDetail = await GetErrorDetail(_staticTextsManager, ex.Key ?? "", ex.MessageKeyTypes, isOverrideMessage ? ex.Message : null);
 
                 await context.Response.WriteAsync(new ErrorResultModel
                 {
