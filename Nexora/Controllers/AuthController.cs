@@ -41,15 +41,5 @@ namespace Nexora.Api.Controllers
         {
             return Ok(await _authService.RefreshToken(request));
         }
-
-        [HttpGet("test")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> Test()
-        {
-            return Ok("This service returned 200");
-        }
     }
 }
