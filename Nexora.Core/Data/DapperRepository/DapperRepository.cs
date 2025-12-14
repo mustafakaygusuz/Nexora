@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Nexora.Core.Data.EfCoreModels;
@@ -9,7 +9,7 @@ namespace Nexora.Core.Data.DapperRepository
 {
     public sealed class DapperRepository(ILogger<DapperRepository> _logger, IConfiguration configuration) : IDapperRepository
     {
-        private IDbConnection CreateConnection() => new SqlConnection(configuration.GetConnectionString("ApplicationDbContext"));
+        private IDbConnection CreateConnection() => new NpgsqlConnection(configuration.GetConnectionString("ApplicationDbContext"));
 
         public async Task<OrmResultModel<int>> Execute(string sp, DynamicParameters? parms = null, CommandType commandType = CommandType.Text, int? commandTimeout = null)
         {
