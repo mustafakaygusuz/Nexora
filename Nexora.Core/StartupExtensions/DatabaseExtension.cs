@@ -14,7 +14,7 @@ namespace Nexora.Core.StartupExtensions
                 .AddDbContext<TDbContext>(options =>
                 {
                     options
-                        .UseSqlServer(configuration.GetConnectionString(typeof(TDbContext).Name), options =>
+                        .UseNpgsql(configuration.GetConnectionString(typeof(TDbContext).Name), options =>
                         {
                             options.EnableRetryOnFailure();
                             options.MigrationsAssembly(typeof(TDbContext).Assembly.GetName().Name);
@@ -31,7 +31,7 @@ namespace Nexora.Core.StartupExtensions
                     }
                 });
 
-            services.MigrateDatabase<TDbContext>();
+            //services.MigrateDatabase<TDbContext>();
 
             return services;
         }
