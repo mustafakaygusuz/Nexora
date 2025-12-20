@@ -23,6 +23,7 @@ namespace Nexora.Data.Domain.Entities
 
         [Column(TypeName = "date")]
         public DateOnly? BirthDate { get; set; }
+        public string? Description { get; set; }
 
         [MaxLength(500)]
         public required byte[] PasswordHash { get; set; }

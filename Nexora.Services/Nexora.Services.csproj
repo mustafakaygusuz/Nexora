@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Security\Nexora.Security.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConsumersServices\Dtos\Request\" />
+  </ItemGroup>
+
 </Project>

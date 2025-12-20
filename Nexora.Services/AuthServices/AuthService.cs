@@ -31,7 +31,8 @@ namespace Nexora.Services.AuthServices
                 CreatedDate = DateTime.UtcNow,
                 Name = request.Name,
                 Surname = request.Surname,
-                Status = StatusType.Active
+                Status = StatusType.Active,
+                Description = request.Description,
             };
             var tokenResponse = _tokenHelper.CreateToken(consumer);
 

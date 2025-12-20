@@ -19,5 +19,6 @@ namespace Nexora.Services.AuthServices.Dtos.Request
         public required string Surname { get; set; }
         public ConsumerGenderType? Gender { get; set; }
         public DateOnly? BirthDate { get; set; }
+        public string? Description { get; set; }
     }
 }

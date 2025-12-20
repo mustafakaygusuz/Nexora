@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nexora.Core.Common.Models;
 using Nexora.Services.ConsumersServices;
+using Nexora.Services.ConsumersServices.Dtos.Response;
 
 namespace Nexora.Api.Controllers
 {
@@ -12,14 +13,26 @@ namespace Nexora.Api.Controllers
     [ApiController]
     public class ConsumersController(IConsumersService _consumersService) : ControllerBase
     {
-        //[HttpGet("profile")]
-        ////[ProducesResponseType(200, Type = typeof(ConsumersGetProfileResult))]
-        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        //public async Task<IActionResult> Get()
-        //{
-        //    return Ok(await _consumersService.GetProfile());
-        //}
+        [HttpPost("delete")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400, Type = typeof(ErrorResultModel))]
+        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        public async Task<IActionResult> Delete()
+        {
+            await _consumersService.DeleteAccount();
+
+            return NoContent();
+        }
+
+        [HttpGet("profile")]
+        [ProducesResponseType(200, Type = typeof(ConsumersGetProfileResult))]
+        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
+        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _consumersService.GetProfile());
+        }
 
         //[HttpPost("profile")]
         //[ProducesResponseType(204)]
@@ -50,18 +63,6 @@ namespace Nexora.Api.Controllers
         //public async Task<IActionResult> UpdateConsents(List<ConsumersUpdateConsentsRequest> request)
         //{
         //    await _consumersService.UpdateConsents(request);
-
-        //    return NoContent();
-        //}
-
-        //[HttpDelete]
-        //[ProducesResponseType(204)]
-        //[ProducesResponseType(400, Type = typeof(ErrorResultModel))]
-        //[ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        //[ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        //public async Task<IActionResult> Delete(ConsumersDeleteAccountRequest request)
-        //{
-        //    await _consumersService.DeleteAccount(request);
 
         //    return NoContent();
         //}

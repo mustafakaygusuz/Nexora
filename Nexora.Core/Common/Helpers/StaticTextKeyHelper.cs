@@ -28,6 +28,7 @@ namespace Nexora.Core.Common.Helpers
             {StaticTextKeyType.AuthExInvldPsswrd, "Auth_Exception_InvalidPassword"},
             {StaticTextKeyType.AuthExInvldRfshTkn, "Auth_Exception_InvalidRefreshToken"},
             {StaticTextKeyType.AuthExRfshTknExprd, "Auth_Exception_InvalidRefreshTokenExpired"},
+            {StaticTextKeyType.CnsmrExNtFnd, "Consumer_Exception_NotFound"},
 
             // Validation
             {StaticTextKeyType.AuthExInvalidEmail, "Auth_Validation_InvalidEmail"},

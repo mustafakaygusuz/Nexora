@@ -1,9 +1,22 @@
 ﻿using Nexora.Core.Common.Models;
+using Nexora.Services.ConsumersServices.Dtos.Response;
 
 namespace Nexora.Services.ConsumersServices
 {
     public interface IConsumersService
     {
+        /// <summary>
+        /// Delete consumer account
+        /// </summary>
+        /// <returns></returns>
+        Task DeleteAccount();
+
+        /// <summary>
+        /// Get profile by curent consumer
+        /// </summary>
+        /// <returns></returns>
+        Task<ConsumersGetProfileResult> GetProfile();
+
         ///// <summary>
         ///// Insert a new consumer into the database.
         ///// </summary>
@@ -102,14 +115,6 @@ namespace Nexora.Services.ConsumersServices
         ///// </summary>
         ///// <returns></returns>
         //Task Logout();
-
-        ///// <summary>
-        ///// Delete account
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        ///// <exception cref="HttpStatusCodeException"></exception>
-        //Task DeleteAccount(ConsumersDeleteAccountRequest request);
 
         ///// <summary>
         ///// Get total member count by status type

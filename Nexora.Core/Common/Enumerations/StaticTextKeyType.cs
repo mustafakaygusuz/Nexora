@@ -15,6 +15,7 @@
         AuthExInvldPsswrd,
         AuthExInvldRfshTkn,
         AuthExRfshTknExprd,
+        CnsmrExNtFnd,
 
         // Validation Keys
         AuthExInvalidEmail,
