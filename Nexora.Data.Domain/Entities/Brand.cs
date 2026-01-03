@@ -1,15 +1,14 @@
 ﻿using Nexora.Core.Data.EfCoreModels;
-using Nexora.Data.Domain.Enumerations;
 
 namespace Nexora.Data.Domain.Entities
 {
-    public class Category : StatefulBaseEntity
+    public class Brand : StatefulBaseEntity
     {
-        public required CategoryType Type { get; set; }
+        public long CategoryId { get; set; }
         public required string Name { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        public ICollection<Brand> Brands { get; set; } = new List<Brand>();
+        public Category Category { get; set; } = null!;
     }
 }

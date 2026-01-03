@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexora.Core.Common.Enumerations;
 using Nexora.Data.Domain.DbContexts;
 using Nexora.Services.CategoriesServices.Dtos.Response;
 
@@ -12,11 +13,17 @@ namespace Nexora.Services.CategoriesServices
         {
             _context = context;
         }
+
+        /// <summary>
+        /// List categories
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<CategoriesListResult>> List()
         {
             return await _context.Categories
                 .AsNoTracking()
                 .OrderBy(x => x.Id)
+                .Where(x => x.Status == StatusType.Active)
                 .Select(x => new CategoriesListResult
                 {
                     Id = x.Id,

@@ -12,10 +12,10 @@ namespace Nexora.Api.Controllers
     public class CategoriesController(ICategoriesService _categoriesService) : ControllerBase
     {
         [HttpGet()]
-        [ProducesResponseType(200, Type = typeof(CategoriesListResult))]
+        [ProducesResponseType(200, Type = typeof(List<CategoriesListResult>))]
         [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
         [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> List()
         {
             return Ok(await _categoriesService.List());
         }
