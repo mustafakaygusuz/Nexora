@@ -51,7 +51,7 @@ app.UseCors("CorsPolicy");
 //app.UseMiddleware<SetContextMiddleware>();
 //app.UseMiddleware<JwtAuthenticationMiddleware>();
 app.UseMiddleware<ErrorHandlerMiddleware>();
-//app.UseMiddleware<DecryptIdParametersMiddleware>();
+app.UseMiddleware<DecryptIdParametersMiddleware>();
 
 app.UseHttpsRedirection();
 

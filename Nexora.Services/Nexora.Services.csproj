@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CategoriesServices\Dtos\Request\" />
     <Folder Include="ConsumersServices\Dtos\Request\" />
   </ItemGroup>
 
