@@ -11,11 +11,11 @@ namespace Nexora.Api.Controllers
     [ApiController]
     public class BrandsController(IBrandsService _brandsService) : ControllerBase
     {
-        [HttpGet("{categoryId}")]
+        [HttpGet("list")]
         [ProducesResponseType(200, Type = typeof(List<BrandsListByCategoryIdResult>))]
         [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
         [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
-        public async Task<IActionResult> List([FromRoute] long categoryId)
+        public async Task<IActionResult> List([FromQuery] long categoryId)
         {
             return Ok(await _brandsService.ListByCategoryId(categoryId));
         }
