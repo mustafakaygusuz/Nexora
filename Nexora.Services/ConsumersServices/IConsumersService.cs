@@ -1,4 +1,4 @@
-﻿using Nexora.Core.Common.Models;
+﻿using Nexora.Data.Domain.Entities;
 using Nexora.Services.ConsumersServices.Dtos.Response;
 
 namespace Nexora.Services.ConsumersServices
@@ -16,6 +16,13 @@ namespace Nexora.Services.ConsumersServices
         /// </summary>
         /// <returns></returns>
         Task<ConsumersGetProfileResult> GetProfile();
+
+        /// <summary>
+        /// Get consumer by Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Consumer?> GetById(long id);
 
         ///// <summary>
         ///// Insert a new consumer into the database.

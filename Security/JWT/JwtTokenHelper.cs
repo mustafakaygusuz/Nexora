@@ -75,7 +75,6 @@ namespace Nexora.Security.JWT
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.UTF8.GetBytes(_secretKey);
-
                 var validationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -87,7 +86,6 @@ namespace Nexora.Security.JWT
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 };
-
                 var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
                 return principal;
             }

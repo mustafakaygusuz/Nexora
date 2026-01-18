@@ -1,21 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexora.Core.Caching.Constants;
+using Nexora.Core.Caching.Services;
 using Nexora.Core.Common.Enumerations;
 using Nexora.Core.Common.Exceptions;
 using Nexora.Core.Common.Extensions;
 using Nexora.Core.Contexts;
-using Nexora.Data.ConsumersRepositories;
 using Nexora.Data.Domain.DbContexts;
+using Nexora.Data.Domain.Entities;
 using Nexora.Services.ConsumersServices.Dtos.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexora.Services.ConsumersServices
 {
-    public class ConsumersService(ApiContext _apiContext, ApplicationDbContext _context) : IConsumersService
+    public class ConsumersService(ApiContext _apiContext, ApplicationDbContext _context, ICacheService _cacheService) : IConsumersService
     {
         /// <summary>
         /// Delete consuer account
@@ -65,6 +62,23 @@ namespace Nexora.Services.ConsumersServices
             };
 
             return result;
+        }
+
+        /// <summary>
+        /// Get consumer by Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Consumer?> GetById(long id)
+        {
+            return await _cacheService.GetAndSetHash(
+                CacheKeys.ConsumersDataHashId(id),
+                CacheKeys.ConsumersDetail,
+                async () => await _context.Consumers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x =>
+                    x.Id == id)
+                , (_apiContext.CurrentDate.AddDays(1) - _apiContext.CurrentDate).TotalSeconds.ToInt());
         }
     }
 }

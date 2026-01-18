@@ -41,11 +41,11 @@ namespace Nexora.Data.ConsumersRepositories
             parameters.Add("RefreshToken", refreshToken);
             parameters.Add("UpdatedDate", DateTime.UtcNow);
 
-            string query = @"UPDATE Consumers 
-                     SET AccessToken = @AccessToken,
-                         RefreshToken = @RefreshToken,
-                         UpdatedDate = @UpdatedDate
-                     WHERE Id = @Id";
+            string query = @"UPDATE ""Consumers"" 
+                     SET ""AccessToken"" = @AccessToken,
+                         ""RefreshToken"" = @RefreshToken,
+                         ""UpdatedDate"" = @UpdatedDate
+                     WHERE ""Id"" = @Id";
 
             return _dapperRepository.Update(query, parameters);
         }

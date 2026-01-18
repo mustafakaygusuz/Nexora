@@ -2,6 +2,7 @@
 {
     public enum CacheGroupType
     {
-        SystemConfiguration
+        SystemConfiguration,
+        Consumers,
     }
 }

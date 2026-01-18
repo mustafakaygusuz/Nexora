@@ -7,7 +7,7 @@ namespace Nexora.Core.Contexts
     public class ApiContext
     {
         public string LanguageId { get; set; } = "tr";
-        public int ConsumerId { get; set; }
+        public long ConsumerId { get; set; }
         public SystemChannelType ChannelType { get; set; }
         public int TimeZone { get; set; } = 3;
         public string IpAddress { get; set; }

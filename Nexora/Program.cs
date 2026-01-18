@@ -3,6 +3,7 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Nexora.Api.Middlewares;
 using Nexora.Api.OperationFilters;
 using Nexora.Core.Common.Configurations;
 using Nexora.Core.Common.JsonConverters;
@@ -49,7 +50,7 @@ app.UseSwaggerUI();
 
 app.UseCors("CorsPolicy");
 //app.UseMiddleware<SetContextMiddleware>();
-//app.UseMiddleware<JwtAuthenticationMiddleware>();
+app.UseMiddleware<JwtAuthenticationMiddleware>();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<DecryptIdParametersMiddleware>();
 
