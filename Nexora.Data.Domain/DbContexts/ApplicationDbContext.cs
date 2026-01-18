@@ -16,7 +16,7 @@ namespace Nexora.Data.Domain.DbContexts
         public virtual DbSet<TranslationValue> TranslationValues { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
-        //public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

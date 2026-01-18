@@ -1,23 +1,16 @@
-﻿using Asp.Versioning;
-using Microsoft.AspNetCore.Mvc;
-using Nexora.Core.Common.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nexora.Services.CategoriesServices;
 using Nexora.Services.CategoriesServices.Dtos.Response;
 
 namespace Nexora.Api.Controllers
 {
-    [ApiVersion(1)]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiController]
-    public class CategoriesController(ICategoriesService _categoriesService) : ControllerBase
+    public class CategoriesController(ICategoriesService _categoriesService) : BaseApiController
     {
         [HttpGet()]
         [ProducesResponseType(200, Type = typeof(List<CategoriesListResult>))]
-        [ProducesResponseType(404, Type = typeof(ErrorResultModel))]
-        [ProducesResponseType(500, Type = typeof(ErrorResultModel))]
         public async Task<IActionResult> List()
         {
-            return Ok(await _categoriesService.List());
+            return OkResult(await _categoriesService.List());
         }
     }
 }

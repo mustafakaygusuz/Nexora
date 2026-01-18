@@ -10,5 +10,6 @@ namespace Nexora.Data.Domain.Entities
         public DateTime? UpdatedDate { get; set; }
 
         public Category Category { get; set; } = null!;
+        public ICollection<Model> Models { get; set; } = new List<Model>();
     }
 }
